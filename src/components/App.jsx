@@ -2,6 +2,8 @@ import React from 'react';
 import { Component } from 'react';
 import Statistics from './Statistics/statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import SectionTitle from './SectionTitle/SectionTitle';
+import NodificationMessage from './NodificationMessage/NodificactionMessage';
 
 export class App extends Component {
     
@@ -47,8 +49,9 @@ export class App extends Component {
     const positiveFeedback = this.countPositiveFeedbackPercentage()
     return (
       <div>
-        <FeedbackOptions onIncrementGood = {this.IncrementGood} onIncremetNeutral = {this.IncrementNeutral} onIncrementBad ={this.IncrementBad}></FeedbackOptions>
-        <Statistics good = {this.state.good} neutral = {this.state.neutral} bad = {this.state.bad} total ={total} onPositiveFeedback ={positiveFeedback}></Statistics>
+        <SectionTitle title = 'Please leave feedback' > <FeedbackOptions onIncrementGood = {this.IncrementGood} onIncremetNeutral = {this.IncrementNeutral} onIncrementBad ={this.IncrementBad}></FeedbackOptions></SectionTitle>
+       <SectionTitle title = 'Statistics'>{ total >= 1 ? <Statistics good = {this.state.good} neutral = {this.state.neutral} bad = {this.state.bad} total ={total} onPositiveFeedback ={positiveFeedback}></Statistics> : <NodificationMessage message = 'There is no feedback'></NodificationMessage>}</SectionTitle>
+        
         </div>
     );
   }
